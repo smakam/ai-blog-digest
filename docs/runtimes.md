@@ -1,15 +1,13 @@
 # Running the digest on each option
 
-Each option uses the same code, `config.yaml`, and `feeds.opml`. Only three things change per
-option: the runtime, `DIGEST_OPTION` (a label written into logs and state), and `SUMMARY_MODEL`.
+Both options run the identical pipeline: same code, `config.yaml`, `feeds.opml`, Jev for
+classification, and Claude Haiku 4.5 (via OpenRouter) for summaries. Only the runtime differs, and
+`DIGEST_OPTION` labels each one's logs and state.
 
-| Option | Runtime | `DIGEST_OPTION` | `SUMMARY_MODEL` (example) |
+| Option | Runtime | `DIGEST_OPTION` | Schedule (IST) |
 |---|---|---|---|
-| A | GitHub Actions cron | `gha` | `anthropic/claude-sonnet-5` |
-| B | Claude Code remote routine | `routine` | `google/gemini-3.8-flash` |
-| C | Claude Cowork scheduled task | `cowork` | `google/gemini-3-pro` |
-
-Pick summarizer models from <https://openrouter.ai/models>; the IDs above are placeholders.
+| A | GitHub Actions cron | `gha` | 07:00 |
+| B | Claude Code remote routine | `routine` | 07:15 |
 
 State lives in `state/<option>.json` and logs in `logs/<date>_<option>.jsonl`, so all options can
 share one repo and commit to it without colliding.
@@ -29,7 +27,6 @@ Already wired up in [`.github/workflows/digest.yml`](../.github/workflows/digest
 1. Push this repo to GitHub (a private repo is fine).
 2. **Settings → Secrets and variables → Actions**:
    - Secrets: `OPENROUTER_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
-   - Variables (optional): `SUMMARY_MODEL`.
 3. **Actions → AI Blog Digest → Run workflow** for a manual run (tick *dry run* first to check the
    output in the job log without sending).
 
@@ -45,7 +42,7 @@ State and logs are committed back to the default branch after every run.
 1. Push the repo to GitHub and connect it to Claude Code on the web.
 2. Create a cloud **environment** for the routine:
    - **Environment variables**: `OPENROUTER_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`,
-     `DIGEST_OPTION=routine`, `SUMMARY_MODEL=<model id>`.
+     (`DIGEST_OPTION=routine` is set in the prompt).
    - **Network access**: full (unrestricted) access — blog domains are arbitrary. If you must use an
      allowlist, include `openrouter.ai`, `api.telegram.org`, and your feed hosts, and expect more
      title-only fallbacks.
@@ -68,7 +65,7 @@ debugging.
 1. In Claude Desktop → Cowork, create a scheduled task: daily at 07:00 (IST local time).
 2. Give it access to a folder containing a checkout of this repo.
 3. Provide the secrets as environment variables available to that task (not in the prompt), plus
-   `DIGEST_OPTION=cowork` and `SUMMARY_MODEL`.
+   `DIGEST_OPTION=cowork` 
 4. Prompt: the contents of [`routine-prompt.md`](routine-prompt.md).
 
 > **Check before relying on it:** at the time of writing, Cowork scheduled tasks may run on your

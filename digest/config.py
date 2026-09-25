@@ -19,7 +19,7 @@ class JevConfig:
 
 @dataclass
 class SummarizerConfig:
-    model: str = "anthropic/claude-sonnet-5"
+    model: str = "anthropic/claude-haiku-4.5"
     base_url: str = "https://openrouter.ai/api/v1"
     max_input_chars: int = 60000
     timeout_seconds: float = 90

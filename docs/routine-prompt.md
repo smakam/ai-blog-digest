@@ -4,7 +4,7 @@ exactly. Do not modify any code, config, or the feed list, and do not try to fix
 1. Make sure you are on `main` and up to date: `git checkout main && git pull --rebase`.
 2. Install: `pip install -q -e .`
 3. Run the digest:
-   `DIGEST_OPTION=routine SUMMARY_MODEL=google/gemini-3.8-flash python -m digest`
+   `DIGEST_OPTION=routine python -m digest`
    It sends the digest and any error notices to Telegram by itself. Do not send Telegram messages
    yourself, and never print, echo, or inspect environment variables or secrets.
 4. Whatever the exit code, commit the changes under `state/` and `logs/`:

@@ -70,7 +70,7 @@ The ones you'll change most:
 | Env var | Purpose |
 |---|---|
 | `DIGEST_OPTION` | Label for this deployment (`gha`, `routine`, `cowork`); keys state and logs |
-| `SUMMARY_MODEL` | OpenRouter model ID for summaries — the per-option variable |
+| `SUMMARY_MODEL` | OpenRouter model ID for summaries (default `anthropic/claude-haiku-4.5`) |
 | `DIGEST_THRESHOLD_HIGH` / `DIGEST_THRESHOLD_MEDIUM` | Bucket thresholds |
 | `DIGEST_OPML_PATH` | Feed list |
 | `JEV_MODEL`, `JEV_BASE_URL` | Jev model / endpoint |

@@ -22,8 +22,8 @@ jev:
   timeout_seconds: 30
 
 summarizer:
-  # OpenRouter model ID. This is the knob that varies per option. [SUMMARY_MODEL]
-  model: anthropic/claude-sonnet-5
+  # OpenRouter model ID, shared by every option. [SUMMARY_MODEL]
+  model: anthropic/claude-haiku-4.5
   base_url: https://openrouter.ai/api/v1
   max_input_chars: 60000
   timeout_seconds: 90

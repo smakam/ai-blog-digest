@@ -82,7 +82,7 @@ class LLMClassifier:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--model", default="anthropic/claude-sonnet-5")
+    parser.add_argument("--model", default="anthropic/claude-sonnet-5")  # classifier to compare against Jev
     parser.add_argument("--hours", type=float)
     parser.add_argument("--out", default="classifier_comparison.csv")
     args = parser.parse_args()

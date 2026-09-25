@@ -42,7 +42,6 @@
         </outline>
         <outline text="cloud-general" title="cloud-general">
             <outline type="rss" text="TechCrunch" title="TechCrunch" xmlUrl="https://techcrunch.com/category/enterprise/feed/" htmlUrl="https://techcrunch.com/"/>
-            <outline type="rss" text="Cloud Computing News" title="Cloud Computing News" xmlUrl="http://www.cloudcomputing-news.net/feed/" htmlUrl="https://www.cloudcomputing-news.net/"/>
             <outline type="rss" text="vLLM Blog" title="vLLM Blog" xmlUrl="https://vllm.ai/blog/rss.xml" htmlUrl="https://vllm.ai/blog"/>
         </outline>
     </body>

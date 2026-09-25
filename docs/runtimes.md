@@ -48,9 +48,9 @@ State and logs are committed back to the default branch after every run.
      title-only fallbacks.
    - **Setup script**: `pip install -e .`
 3. Create the routine (`/schedule` in Claude Code, or claude.ai/code → Routines) with:
-   - Repository: this repo, with **Allow unrestricted branch pushes** enabled (otherwise routines can
-     only push to `claude/`-prefixed branches — in that case set the state branch accordingly).
-   - Schedule: daily, custom cron `30 1 * * *` (UTC).
+   - Repository: this repo. No branch-push setting is needed: the routine keeps its state and
+     logs on `claude/digest-routine`, and routines may push `claude/` branches by default.
+   - Schedule: daily, cron `45 1 * * *` (UTC) = 07:15 IST.
    - Prompt: the contents of [`routine-prompt.md`](routine-prompt.md).
 4. Manual run: **Run now** on the routine, or its API `/fire` trigger.
 
@@ -79,6 +79,7 @@ debugging.
 
 ```bash
 git pull                                   # collect logs from every option
+git fetch origin && git checkout origin/claude/digest-routine -- logs   # routine's logs
 python tools/report.py review --out review.csv
 # mark manual_is_ai / manual_bucket for a sample of rows in review.csv
 python tools/report.py compare --review review.csv

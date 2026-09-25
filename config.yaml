@@ -1,0 +1,46 @@
+# AI Blog Digest configuration. Secrets never go here — see README "Secrets".
+# Any key can be overridden by an environment variable, shown in brackets.
+
+# Label for this deployment, written into every log record so runs from
+# different options can be compared. [DIGEST_OPTION]
+option: local
+
+# Feedly OPML export. [DIGEST_OPML_PATH]
+opml_path: feeds.opml
+
+# Only items published within this many hours are considered. [DIGEST_LOOKBACK_HOURS]
+lookback_hours: 24
+
+jev:
+  # Model passed to the TypeSafe SDK. On OpenRouter use "jev-1.13" or "jev-latest". [JEV_MODEL]
+  model: jev-1.13
+  # SDK base URL. Switch to https://api.typesafe.ai (plus a TypeSafe key) to go native. [JEV_BASE_URL]
+  base_url: https://openrouter.ai/api
+  # Jev context is 32K tokens; articles are cut to roughly this many tokens. [JEV_MAX_INPUT_TOKENS]
+  max_input_tokens: 20000
+  timeout_seconds: 30
+
+summarizer:
+  # OpenRouter model ID. This is the knob that varies per option. [SUMMARY_MODEL]
+  model: anthropic/claude-sonnet-5
+  base_url: https://openrouter.ai/api/v1
+  max_input_chars: 60000
+  timeout_seconds: 90
+
+thresholds:
+  high: 0.7    # score >= high          -> High   [DIGEST_THRESHOLD_HIGH]
+  medium: 0.4  # medium <= score < high -> Medium [DIGEST_THRESHOLD_MEDIUM]
+
+# Seen-item IDs are kept this long to prevent re-delivery. {option} keeps each
+# option's state separate so several runtimes can share one repo. [DIGEST_STATE_PATH]
+state_path: state/{option}.json
+state_retention_days: 30
+
+log_dir: logs  # [DIGEST_LOG_DIR]
+
+fetch:
+  timeout_seconds: 20
+  max_workers: 8
+  user_agent: "Mozilla/5.0 (compatible; ai-blog-digest/0.1)"
+  # Feed content shorter than this is treated as a summary, not full text.
+  min_full_text_chars: 1500

@@ -1,0 +1,65 @@
+name: AI Blog Digest
+
+on:
+  schedule:
+    # 01:30 UTC = 07:00 IST. GitHub cron can start a few minutes late under load.
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the digest in the job log instead of sending it"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write  # to commit state and logs back
+
+concurrency:
+  group: digest-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install .
+
+      - name: Run digest
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DIGEST_OPTION: gha
+          # Set a repository variable SUMMARY_MODEL to change the summarizer; empty keeps config.yaml.
+          SUMMARY_MODEL: ${{ vars.SUMMARY_MODEL }}
+        run: python -m digest ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Commit state and logs
+        if: always() && !inputs.dry_run
+        run: |
+          git config user.name "ai-blog-digest"
+          git config user.email "actions@users.noreply.github.com"
+          git add state logs
+          git diff --cached --quiet && exit 0
+          git commit -m "digest: state and logs $(date -u +%F)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
+
+      - name: Notify on workflow failure
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          curl -sS -o /dev/null "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=⚠️ AI Blog Digest (gha): workflow failed — ${RUN_URL}"

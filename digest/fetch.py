@@ -115,6 +115,11 @@ def parse_feed(feed: Feed, body: bytes, since: datetime) -> tuple[list[Item], in
     return items, undated
 
 
+def _looks_like_feed(response: httpx.Response) -> bool:
+    head = response.content[:500].lstrip().lower()
+    return head.startswith(b"<?xml") or b"<rss" in head or b"<feed" in head or b"<rdf" in head
+
+
 def describe_feed_error(exc: Exception) -> str:
     """A short, one-line reason suitable for a Telegram notice."""
     if isinstance(exc, httpx.HTTPStatusError):
@@ -147,6 +152,11 @@ class Fetcher:
             # Timeouts and connection resets are often transient; one retry cuts false alarms.
             log.info("Retrying %s after a transport error", feed.title)
             response = self.client.get(feed.xml_url)
+        if response.is_error or not _looks_like_feed(response):
+            # Log what came back (for debugging blocks/proxies); the notice itself stays short.
+            log.warning("%s: HTTP %s, server=%s, content-type=%s, body starts: %r", feed.title,
+                        response.status_code, response.headers.get("server"),
+                        response.headers.get("content-type"), response.text[:200])
         response.raise_for_status()
         items, undated = parse_feed(feed, response.content, since)
         if undated:

@@ -66,6 +66,7 @@ class Config:
     option: str = "local"
     opml_path: str = "feeds.opml"
     lookback_hours: float = 36
+    max_summaries: int = 5
     jev: JevConfig = field(default_factory=JevConfig)
     summarizer: SummarizerConfig = field(default_factory=SummarizerConfig)
     thresholds: Thresholds = field(default_factory=Thresholds)
@@ -80,6 +81,7 @@ _ENV_OVERRIDES = {
     "DIGEST_OPTION": (None, "option", str),
     "DIGEST_OPML_PATH": (None, "opml_path", str),
     "DIGEST_LOOKBACK_HOURS": (None, "lookback_hours", float),
+    "DIGEST_MAX_SUMMARIES": (None, "max_summaries", int),
     "DIGEST_STATE_PATH": (None, "state_path", str),
     "DIGEST_LOG_DIR": (None, "log_dir", str),
     "JEV_MODEL": ("jev", "model", str),

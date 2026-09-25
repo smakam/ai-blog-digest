@@ -87,8 +87,10 @@ def run(
     ranked = sorted((i for i in items if i.bucket), key=lambda i: i.final_score or 0, reverse=True)
     high = [i for i in ranked if i.bucket == Bucket.HIGH]
     medium = [i for i in ranked if i.bucket == Bucket.MEDIUM]
+    # Only the best High items get a summary; the overflow is listed (still delivered) above Medium.
+    top, overflow = high[: config.max_summaries], high[config.max_summaries :]
 
-    for item in high:
+    for item in top:
         try:
             summarizer.summarize(item)
         except Exception as exc:  # noqa: BLE001
@@ -97,7 +99,7 @@ def run(
             result.llm_failures.append((item, msg))
             log.warning("Summary failed for %s: %s", item.url, msg)
 
-    result.messages = format_digest(high, medium, datetime.now(timezone.utc).date(), option=config.option)
+    result.messages = format_digest(top, overflow + medium, datetime.now(timezone.utc).date(), option=config.option)
 
     delivery_error = None
     if dry_run:

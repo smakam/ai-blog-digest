@@ -171,3 +171,17 @@ def test_dry_run_sends_nothing(env, capsys):
     assert tg.sent == [] and tg.errors == []
     assert "AI Blog Digest" in capsys.readouterr().out
     assert SeenState(config.state_path).seen == {}
+
+
+def test_only_top_n_high_items_are_summarized(env):
+    config, fetcher = env
+    config.max_summaries = 1
+    tg, summarizer = FakeTelegram(), FakeSummarizer()
+    do_run(config, fetcher, tg, summarizer)
+    assert summarizer.calls == ["Inside our agent runtime architecture"]
+    digest = tg.sent[0]
+    assert "Top picks (1)" in digest
+    # The overflow High item is still delivered, as a link ahead of the Medium items.
+    also = digest.split("Also worth a look")[1]
+    assert also.index("Announcing a new open model") < also.index("10 prompt tips")
+    assert "Summary of Announcing" not in digest

@@ -36,7 +36,7 @@ Replace `feeds.opml` with your own export (Feedly → Organize → Export OPML).
 | §1 OPML input, 24h window, content resolution (feed full text → article extraction → title+summary) | [digest/opml.py](digest/opml.py), [digest/fetch.py](digest/fetch.py) |
 | §2 One Jev call per item: `is_ai` (noul) + `worthiness` (5-level score, normalized to 0–1); ~20K-token cap; content only, no author | [digest/classify.py](digest/classify.py) |
 | §3 Drop non-AI; High ≥ 0.7, Medium ≥ 0.4; author-boost hook (`ScoreAdjuster`, unused in v1) | [digest/scoring.py](digest/scoring.py) |
-| §4 4–5 line summaries of High items, one shared prompt, model ID per option | [digest/summarize.py](digest/summarize.py) |
+| §4 4–5 line summaries of the top 5 High items (`max_summaries`; the rest are listed as links), one shared prompt, model ID per option | [digest/summarize.py](digest/summarize.py) |
 | §5 One Telegram message: High = summary + link, Medium = title + link | [digest/telegram.py](digest/telegram.py) |
 | §7 Never deliver twice: seen-ID state, pruned after 30 days | [digest/state.py](digest/state.py) |
 | §9 Per-item JSONL log + error notices to Telegram | [digest/runlog.py](digest/runlog.py), [digest/pipeline.py](digest/pipeline.py) |

@@ -28,6 +28,11 @@ summarizer:
   max_input_chars: 60000
   timeout_seconds: 90
 
+# Only the top N High items (by score) are summarized and shown as top picks; the rest of the
+# High items are listed with Medium as title + link. Keeps the digest to one message and caps
+# LLM cost. [DIGEST_MAX_SUMMARIES]
+max_summaries: 5
+
 thresholds:
   high: 0.7    # score >= high          -> High   [DIGEST_THRESHOLD_HIGH]
   medium: 0.4  # medium <= score < high -> Medium [DIGEST_THRESHOLD_MEDIUM]

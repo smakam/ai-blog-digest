@@ -6,7 +6,7 @@ option: the runtime, `DIGEST_OPTION` (a label written into logs and state), and 
 | Option | Runtime | `DIGEST_OPTION` | `SUMMARY_MODEL` (example) |
 |---|---|---|---|
 | A | GitHub Actions cron | `gha` | `anthropic/claude-sonnet-5` |
-| B | Claude Code remote routine | `routine` | `openai/gpt-5` |
+| B | Claude Code remote routine | `routine` | `google/gemini-3.8-flash` |
 | C | Claude Cowork scheduled task | `cowork` | `google/gemini-3-pro` |
 
 Pick summarizer models from <https://openrouter.ai/models>; the IDs above are placeholders.

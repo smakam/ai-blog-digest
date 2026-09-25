@@ -1,11 +1,15 @@
-Run the AI Blog Digest daily job in this repository. Follow these steps exactly and do not modify
-any code, config, or feed list.
+Run the AI Blog Digest daily job in this repository (smakam/ai-blog-digest). Follow these steps
+exactly. Do not modify any code, config, or the feed list, and do not try to fix failures.
 
-1. If `python -c "import digest"` fails, run `pip install -e .`.
-2. Run `python -m digest`. It sends the digest and any error notices to Telegram itself.
-   Do not send Telegram messages yourself and do not print or echo any environment variable.
-3. Whatever the exit code, commit the changes under `state/` and `logs/` with the message
-   `digest: state and logs <YYYY-MM-DD> (<DIGEST_OPTION>)` and push to the current branch. If the
-   push is rejected, `git pull --rebase` and push again (up to 3 times).
-4. Report the exit code and the last 20 lines of the command's output. If the exit code was
-   non-zero, do not try to fix anything; just report.
+1. Make sure you are on `main` and up to date: `git checkout main && git pull --rebase`.
+2. Install: `pip install -q -e .`
+3. Run the digest:
+   `DIGEST_OPTION=routine SUMMARY_MODEL=google/gemini-3.8-flash python -m digest`
+   It sends the digest and any error notices to Telegram by itself. Do not send Telegram messages
+   yourself, and never print, echo, or inspect environment variables or secrets.
+4. Whatever the exit code, commit the changes under `state/` and `logs/`:
+   `git add state logs && git commit -m "digest: state and logs $(date -u +%F) (routine)"`
+   (skip the commit if there is nothing to commit), then `git push origin main`. If the push is
+   rejected because main moved, run `git pull --rebase` and push again, up to 3 times.
+5. Finish with a short report: the digest command's exit code, its last 15 lines of output, and
+   whether the push succeeded. If anything failed, report it; do not attempt a fix.

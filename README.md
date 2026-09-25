@@ -33,7 +33,7 @@ Replace `feeds.opml` with your own export (Feedly → Organize → Export OPML).
 
 | Spec | Where |
 |---|---|
-| §1 OPML input, 24h window, content resolution (feed full text → article extraction → title+summary) | [digest/opml.py](digest/opml.py), [digest/fetch.py](digest/fetch.py) |
+| §1 OPML input, 36h lookback (`lookback_hours`; wider than 24h so a late or skipped run loses nothing), content resolution (feed full text → article extraction → title+summary) | [digest/opml.py](digest/opml.py), [digest/fetch.py](digest/fetch.py) |
 | §2 One Jev call per item: `is_ai` (noul) + `worthiness` (5-level score, normalized to 0–1); ~20K-token cap; content only, no author | [digest/classify.py](digest/classify.py) |
 | §3 Drop non-AI; High ≥ 0.7, Medium ≥ 0.4; author-boost hook (`ScoreAdjuster`, unused in v1) | [digest/scoring.py](digest/scoring.py) |
 | §4 4–5 line summaries of the top 5 High items (`max_summaries`; the rest are listed as links), one shared prompt, model ID per option | [digest/summarize.py](digest/summarize.py) |

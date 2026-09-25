@@ -11,11 +11,6 @@
             <outline type="rss" text="philschmid.de - RSS feed" title="philschmid.de - RSS feed" xmlUrl="https://www.philschmid.de/rss" htmlUrl="https://www.philschmid.de"/>
             <outline type="rss" text="Simon Willison's Weblog" title="Simon Willison's Weblog" xmlUrl="https://simonwillison.net/atom/everything/" htmlUrl="http://simonwillison.net/"/>
         </outline>
-        <outline text="Embodied AI - Robotics" title="Embodied AI - Robotics">
-            <outline type="rss" text="- Archives Page 1 | NVIDIA Blog" title="- Archives Page 1 | NVIDIA Blog" xmlUrl="https://blogs.nvidia.com/blog/category/robotics/feed/" htmlUrl="https://blogs.nvidia.com/blog/category/robotics/"/>
-            <outline type="rss" text="The Berkeley Artificial Intelligence Research Blog" title="The Berkeley Artificial Intelligence Research Blog" xmlUrl="https://bair.berkeley.edu/blog/feed.xml" htmlUrl="http://bair.berkeley.edu/blog/"/>
-            <outline type="rss" text="The Stanford AI Lab Blog" title="The Stanford AI Lab Blog" xmlUrl="https://ai.stanford.edu/blog/feed.xml" htmlUrl="http://ai.stanford.edu/blog/"/>
-        </outline>
         <outline text="AI - Frontier Labs" title="AI - Frontier Labs">
             <outline type="rss" text="Together.ai" title="Together.ai" xmlUrl="https://www.together.ai/blog/rss.xml" htmlUrl="https://www.together.ai"/>
             <outline type="rss" text="The latest research from Google" title="The latest research from Google" xmlUrl="https://research.google/blog/rss/" htmlUrl="https://research.google/blog/"/>

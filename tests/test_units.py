@@ -216,3 +216,13 @@ def test_feed_fetch_retries_once_on_timeout():
 
     items = _fetcher(handler).fetch_feed(Feed("Blog", "https://ex.com/feed"), NOW - timedelta(hours=1))
     assert len(calls) == 2 and [i.title for i in items] == ["ok"]
+
+
+def test_feed_errors_are_short_and_readable():
+    from digest.fetch import describe_feed_error
+    req = httpx.Request("GET", "https://ex.com/feed")
+    err = httpx.HTTPStatusError("Client error '403 Forbidden'\nFor more information check: https://x",
+                                request=req, response=httpx.Response(403, request=req))
+    assert describe_feed_error(err) == "HTTP 403 Forbidden"
+    assert describe_feed_error(httpx.ReadTimeout("t", request=req)) == "timed out"
+    assert "not a valid feed" in describe_feed_error(ValueError("unparseable feed: <unknown>:2:119"))

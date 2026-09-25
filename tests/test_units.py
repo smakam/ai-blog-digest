@@ -196,3 +196,10 @@ def test_config_rejects_bad_thresholds(tmp_path):
     cfg.write_text("thresholds: {high: 0.3, medium: 0.5}\n")
     with pytest.raises(ValueError):
         load_config(cfg)
+
+
+def test_trim_to_sentence():
+    from digest.summarize import trim_to_sentence
+    assert trim_to_sentence("One thing. Two things. Takeaway: em") == "One thing. Two things."
+    assert trim_to_sentence("Complete sentence.") == "Complete sentence."
+    assert trim_to_sentence("no sentence break at all") == "no sentence break at all"

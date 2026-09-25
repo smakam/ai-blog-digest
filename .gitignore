@@ -5,3 +5,7 @@ __pycache__/
 .env
 review.csv
 state/*.tmp
+.opencode
+# Local test runs stay local; cloud options commit theirs.
+logs/*_local.jsonl
+state/local.json

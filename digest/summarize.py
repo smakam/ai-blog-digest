@@ -11,11 +11,23 @@ from digest.models import Item
 
 # Shared by every option so summary quality is comparable.
 SYSTEM_PROMPT = """You write entries for a daily AI engineering digest read by an experienced AI engineer.
-Summarize the blog post in 4-5 short lines of plain text (no markdown, no bullet symbols, no preamble):
+Summarize the blog post in 4-5 short sentences, 90 words at most, plain text
+(no markdown, no bullet symbols, no preamble):
 - what the post is (the concrete thing announced, built, or argued),
 - why it matters to someone building AI systems,
 - the single most useful takeaway.
-Be specific: name models, techniques, numbers, and components from the post. Do not invent details."""
+Be specific: name models, techniques, and key numbers from the post, but pick only the most
+important ones. Do not invent details."""
+
+MAX_SUMMARY_TOKENS = 250
+
+
+def trim_to_sentence(text: str) -> str:
+    """Drop a trailing partial sentence left by hitting the token limit."""
+    cut = max(text.rfind(". "), text.rfind(".\n"), text.rfind("! "), text.rfind("? "))
+    if text.rstrip().endswith((".", "!", "?")) or cut < 0:
+        return text
+    return text[: cut + 1]
 
 
 def build_user_prompt(item: Item, max_chars: int) -> str:
@@ -47,7 +59,7 @@ class Summarizer:
                     {"role": "system", "content": SYSTEM_PROMPT},
                     {"role": "user", "content": build_user_prompt(item, self.config.max_input_chars)},
                 ],
-                "max_tokens": 400,
+                "max_tokens": MAX_SUMMARY_TOKENS,
                 "temperature": 0.2,
                 "usage": {"include": True},
             },
@@ -59,8 +71,11 @@ class Summarizer:
         item.llm_ms = (time.perf_counter() - started) * 1000
         cost = (body.get("usage") or {}).get("cost")
         item.llm_cost = float(cost) if cost is not None else None
-        content = body["choices"][0]["message"]["content"] or ""
-        if not content.strip():
+        choice = body["choices"][0]
+        content = (choice["message"]["content"] or "").strip()
+        if not content:
             raise RuntimeError("empty summary")
-        item.summary = content.strip()
+        if choice.get("finish_reason") == "length":
+            content = trim_to_sentence(content)
+        item.summary = content
         return item.summary

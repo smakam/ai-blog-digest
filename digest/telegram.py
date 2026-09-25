@@ -27,7 +27,7 @@ def format_digest(high: list[Item], medium: list[Item], day: date, option: str |
 
     blocks: list[str] = [header]
     if not high and not medium:
-        blocks.append("No worthwhile AI posts in the last 24 hours.")
+        blocks.append("No new worthwhile AI posts since the last digest.")
 
     if high:
         blocks.append(f"<b>🔥 Top picks ({len(high)})</b>")

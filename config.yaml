@@ -8,8 +8,9 @@ option: local
 # Feedly OPML export. [DIGEST_OPML_PATH]
 opml_path: feeds.opml
 
-# Only items published within this many hours are considered. [DIGEST_LOOKBACK_HOURS]
-lookback_hours: 24
+# Only items published within this many hours are considered. Wider than 24h so a late or
+# skipped run loses nothing; the seen-item state prevents repeats. [DIGEST_LOOKBACK_HOURS]
+lookback_hours: 36
 
 jev:
   # Model passed to the TypeSafe SDK. On OpenRouter use "jev-1.13" or "jev-latest". [JEV_MODEL]

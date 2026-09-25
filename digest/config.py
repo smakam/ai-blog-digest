@@ -65,7 +65,7 @@ class Secrets:
 class Config:
     option: str = "local"
     opml_path: str = "feeds.opml"
-    lookback_hours: float = 24
+    lookback_hours: float = 36
     jev: JevConfig = field(default_factory=JevConfig)
     summarizer: SummarizerConfig = field(default_factory=SummarizerConfig)
     thresholds: Thresholds = field(default_factory=Thresholds)

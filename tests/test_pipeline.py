@@ -143,7 +143,7 @@ def test_second_run_never_redelivers(env):
     # Only the item Jev failed on is retried; nothing already delivered appears again.
     assert [i.title for i in result.items] == ["Jev will fail on this one"]
     assert "Inside our agent runtime" not in tg2.sent[0]
-    assert "No worthwhile AI posts" in tg2.sent[0]
+    assert "No new worthwhile AI posts" in tg2.sent[0]
 
 
 def test_llm_failure_still_delivers_title(env):

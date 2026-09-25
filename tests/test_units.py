@@ -177,7 +177,7 @@ def test_format_digest_escapes_and_splits():
 
 
 def test_format_digest_empty():
-    assert "No worthwhile" in format_digest([], [], NOW.date())[0]
+    assert "No new worthwhile" in format_digest([], [], NOW.date())[0]
 
 
 # ---- Config ----

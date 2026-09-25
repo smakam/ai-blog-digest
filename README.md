@@ -5,7 +5,7 @@ A daily job that reads your blog subscriptions (a Feedly OPML export), uses **Je
 and sends one digest to **Telegram**. Jev and the summarizer are both reached through **OpenRouter**.
 
 ```
-feeds.opml ─► fetch last 24h ─► skip seen ─► resolve text ─► Jev (is_ai + worthiness)
+feeds.opml ─► fetch last 36h ─► skip seen ─► resolve text ─► Jev (is_ai + worthiness)
           ─► policy (drop non-AI, bucket) ─► LLM summaries (High only) ─► Telegram
           ─► state/<option>.json + logs/<date>_<option>.jsonl
 ```

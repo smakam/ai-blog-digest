@@ -21,11 +21,9 @@
             <outline type="rss" text="The latest research from Google" title="The latest research from Google" xmlUrl="https://research.google/blog/rss/" htmlUrl="https://research.google/blog/"/>
             <outline type="rss" text="AI at Meta" title="AI at Meta" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC5qxlwEKM7-5YZudb24l0bg" htmlUrl="https://www.youtube.com/channel/UC5qxlwEKM7-5YZudb24l0bg"/>
             <outline type="rss" text="AI at Meta Blog" title="AI at Meta Blog" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml" htmlUrl="https://ai.meta.com/blog/"/>
-            <outline type="rss" text="Mistral AI Press Releases" title="Mistral AI Press Releases" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_mistral.xml" htmlUrl="https://mistral.ai/news/"/>
             <outline type="rss" text="xAI News" title="xAI News" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml" htmlUrl="https://x.ai/news"/>
             <outline type="rss" text="Microsoft Research" title="Microsoft Research" xmlUrl="https://www.microsoft.com/en-us/research/feed/" htmlUrl="https://www.microsoft.com/en-us/research/"/>
             <outline type="rss" text="Claude Code Changelog" title="Claude Code Changelog" xmlUrl="https://github.com/anthropics/claude-code/releases.atom" htmlUrl="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"/>
-            <outline type="rss" text="Cohere Press Releases" title="Cohere Press Releases" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cohere.xml" htmlUrl="https://cohere.com/newsroom"/>
         </outline>
         <outline text="AI - Research Analysis" title="AI - Research Analysis">
             <outline type="rss" text="The Gradient" title="The Gradient" xmlUrl="https://thegradient.pub/rss/" htmlUrl="https://thegradient.pub/"/>

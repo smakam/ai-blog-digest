@@ -9,3 +9,4 @@ state/*.tmp
 # Local test runs stay local; cloud options commit theirs.
 logs/*_local.jsonl
 state/local.json
+classifier_comparison*.csv

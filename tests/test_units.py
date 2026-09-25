@@ -201,5 +201,5 @@ def test_config_rejects_bad_thresholds(tmp_path):
 def test_trim_to_sentence():
     from digest.summarize import trim_to_sentence
     assert trim_to_sentence("One thing. Two things. Takeaway: em") == "One thing. Two things."
-    assert trim_to_sentence("Complete sentence.") == "Complete sentence."
+    assert trim_to_sentence("First point. It delivered up to 2.") == "First point."
     assert trim_to_sentence("no sentence break at all") == "no sentence break at all"

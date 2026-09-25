@@ -23,11 +23,13 @@ MAX_SUMMARY_TOKENS = 250
 
 
 def trim_to_sentence(text: str) -> str:
-    """Drop a trailing partial sentence left by hitting the token limit."""
+    """Drop the trailing partial sentence left by hitting the token limit.
+
+    Only called on truncated output, so the last piece is always treated as incomplete, even when
+    it happens to end in "." (e.g. cut off inside "2.66x").
+    """
     cut = max(text.rfind(". "), text.rfind(".\n"), text.rfind("! "), text.rfind("? "))
-    if text.rstrip().endswith((".", "!", "?")) or cut < 0:
-        return text
-    return text[: cut + 1]
+    return text if cut < 0 else text[: cut + 1]
 
 
 def build_user_prompt(item: Item, max_chars: int) -> str:

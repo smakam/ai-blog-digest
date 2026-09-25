@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Sample feed list. Replace with your Feedly export: Feedly > Organize > "Export OPML". -->
+
 <opml version="1.0">
-  <head><title>AI Blog Digest sample subscriptions</title></head>
-  <body>
-    <outline text="AI" title="AI">
-      <outline type="rss" text="Simon Willison" title="Simon Willison" xmlUrl="https://simonwillison.net/atom/everything/" htmlUrl="https://simonwillison.net/"/>
-      <outline type="rss" text="Hugging Face Blog" title="Hugging Face Blog" xmlUrl="https://huggingface.co/blog/feed.xml" htmlUrl="https://huggingface.co/blog"/>
-      <outline type="rss" text="Lil'Log" title="Lil'Log" xmlUrl="https://lilianweng.github.io/index.xml" htmlUrl="https://lilianweng.github.io/"/>
-      <outline type="rss" text="The Gradient" title="The Gradient" xmlUrl="https://thegradient.pub/rss/" htmlUrl="https://thegradient.pub/"/>
-      <outline type="rss" text="Hacker News frontpage" title="Hacker News frontpage" xmlUrl="https://hnrss.org/frontpage" htmlUrl="https://news.ycombinator.com/"/>
-    </outline>
-  </body>
+    <!-- Feedly export 2026-09-25. Feeds that only work inside Feedly (feedproxy.feedly.com) or
+     had moved were repointed to public URLs; names and folders are unchanged. -->
+    <head>
+        <title>Sreenivas subscriptions in feedly Cloud</title>
+    </head>
+    <body>
+        <outline text="People" title="People">
+            <outline type="rss" text="philschmid.de - RSS feed" title="philschmid.de - RSS feed" xmlUrl="https://www.philschmid.de/rss" htmlUrl="https://www.philschmid.de"/>
+            <outline type="rss" text="Simon Willison's Weblog" title="Simon Willison's Weblog" xmlUrl="https://simonwillison.net/atom/everything/" htmlUrl="http://simonwillison.net/"/>
+        </outline>
+        <outline text="Embodied AI - Robotics" title="Embodied AI - Robotics">
+            <outline type="rss" text="- Archives Page 1 | NVIDIA Blog" title="- Archives Page 1 | NVIDIA Blog" xmlUrl="https://blogs.nvidia.com/blog/category/robotics/feed/" htmlUrl="https://blogs.nvidia.com/blog/category/robotics/"/>
+            <outline type="rss" text="The Berkeley Artificial Intelligence Research Blog" title="The Berkeley Artificial Intelligence Research Blog" xmlUrl="https://bair.berkeley.edu/blog/feed.xml" htmlUrl="http://bair.berkeley.edu/blog/"/>
+            <outline type="rss" text="The Stanford AI Lab Blog" title="The Stanford AI Lab Blog" xmlUrl="https://ai.stanford.edu/blog/feed.xml" htmlUrl="http://ai.stanford.edu/blog/"/>
+        </outline>
+        <outline text="AI - Frontier Labs" title="AI - Frontier Labs">
+            <outline type="rss" text="Together.ai" title="Together.ai" xmlUrl="https://www.together.ai/blog/rss.xml" htmlUrl="https://www.together.ai"/>
+            <outline type="rss" text="The latest research from Google" title="The latest research from Google" xmlUrl="https://research.google/blog/rss/" htmlUrl="https://research.google/blog/"/>
+            <outline type="rss" text="AI at Meta" title="AI at Meta" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC5qxlwEKM7-5YZudb24l0bg" htmlUrl="https://www.youtube.com/channel/UC5qxlwEKM7-5YZudb24l0bg"/>
+            <outline type="rss" text="AI at Meta Blog" title="AI at Meta Blog" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml" htmlUrl="https://ai.meta.com/blog/"/>
+            <outline type="rss" text="Mistral AI Press Releases" title="Mistral AI Press Releases" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_mistral.xml" htmlUrl="https://mistral.ai/news/"/>
+            <outline type="rss" text="xAI News" title="xAI News" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml" htmlUrl="https://x.ai/news"/>
+            <outline type="rss" text="Microsoft Research" title="Microsoft Research" xmlUrl="https://www.microsoft.com/en-us/research/feed/" htmlUrl="https://www.microsoft.com/en-us/research/"/>
+            <outline type="rss" text="Claude Code Changelog" title="Claude Code Changelog" xmlUrl="https://github.com/anthropics/claude-code/releases.atom" htmlUrl="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"/>
+            <outline type="rss" text="Cohere Press Releases" title="Cohere Press Releases" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cohere.xml" htmlUrl="https://cohere.com/newsroom"/>
+        </outline>
+        <outline text="AI - Research Analysis" title="AI - Research Analysis">
+            <outline type="rss" text="The Gradient" title="The Gradient" xmlUrl="https://thegradient.pub/rss/" htmlUrl="https://thegradient.pub/"/>
+            <outline type="rss" text="Import AI" title="Import AI" xmlUrl="https://jack-clark.net/feed/" htmlUrl="https://jack-clark.net"/>
+        </outline>
+        <outline text="Ai" title="Ai">
+            <outline type="rss" text="Latent.Space" title="Latent.Space" xmlUrl="https://www.latent.space/feed?utm_source=chatgpt.com" htmlUrl="https://www.latent.space"/>
+            <outline type="rss" text="AI &amp; Machine Learning" title="AI &amp; Machine Learning" xmlUrl="https://cloudblog.withgoogle.com/products/ai-machine-learning/rss/" htmlUrl="https://cloud.google.com/blog/products/ai-machine-learning/"/>
+            <outline type="rss" text="Hugging Face - Blog" title="Hugging Face - Blog" xmlUrl="https://huggingface.co/blog/feed.xml?utm_source=chatgpt.com" htmlUrl="https://huggingface.co/blog"/>
+            <outline type="rss" text="Anthropic Press Releases" title="Anthropic Press Releases" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml" htmlUrl="https://www.anthropic.com/news?subjects=announcements"/>
+            <outline type="rss" text="Anthropic Engineering Blog" title="Anthropic Engineering Blog" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml" htmlUrl="https://www.anthropic.com/engineering"/>
+            <outline type="rss" text="OpenAI " title="OpenAI " xmlUrl="https://openai.com/news/rss.xml" htmlUrl="https://blog.openai.com"/>
+            <outline type="rss" text="NVIDIA Technical Blog" title="NVIDIA Technical Blog" xmlUrl="https://developer.nvidia.com/blog/feed/" htmlUrl="https://developer.nvidia.com/blog"/>
+            <outline type="rss" text="DeepMind " title="DeepMind " xmlUrl="https://deepmind.com/blog/feed/basic/" htmlUrl="https://deepmind.google/blog/"/>
+            <outline type="rss" text="AI" title="AI" xmlUrl="https://www.blog.google/technology/ai/rss/" htmlUrl="https://blog.google/innovation-and-ai/technology/ai/"/>
+            <outline type="rss" text="Claude Blog" title="Claude Blog" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_claude.xml" htmlUrl="https://claude.com/blog"/>
+        </outline>
+        <outline text="India" title="India">
+            <outline type="rss" text="Yourstory" title="Yourstory" xmlUrl="https://yourstory.com/feed" htmlUrl="https://yourstory.com/"/>
+            <outline type="rss" text="Inc42 Media" title="Inc42 Media" xmlUrl="http://inc42.com/magazine/feed/" htmlUrl="https://inc42.com/"/>
+        </outline>
+        <outline text="cloud-general" title="cloud-general">
+            <outline type="rss" text="TechCrunch" title="TechCrunch" xmlUrl="https://techcrunch.com/category/enterprise/feed/" htmlUrl="https://techcrunch.com/"/>
+            <outline type="rss" text="Cloud Computing News" title="Cloud Computing News" xmlUrl="http://www.cloudcomputing-news.net/feed/" htmlUrl="https://www.cloudcomputing-news.net/"/>
+            <outline type="rss" text="vLLM Blog" title="vLLM Blog" xmlUrl="https://vllm.ai/blog/rss.xml" htmlUrl="https://vllm.ai/blog"/>
+        </outline>
+    </body>
 </opml>

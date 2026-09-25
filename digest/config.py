@@ -33,7 +33,7 @@ class Thresholds:
 
 @dataclass
 class FetchConfig:
-    timeout_seconds: float = 20
+    timeout_seconds: float = 30
     max_workers: int = 8
     user_agent: str = "Mozilla/5.0 (compatible; ai-blog-digest/0.1)"
     min_full_text_chars: int = 1500

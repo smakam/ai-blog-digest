@@ -40,7 +40,7 @@ state_retention_days: 30
 log_dir: logs  # [DIGEST_LOG_DIR]
 
 fetch:
-  timeout_seconds: 20
+  timeout_seconds: 30
   max_workers: 8
   user_agent: "Mozilla/5.0 (compatible; ai-blog-digest/0.1)"
   # Feed content shorter than this is treated as a summary, not full text.

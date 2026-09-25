@@ -203,3 +203,16 @@ def test_trim_to_sentence():
     assert trim_to_sentence("One thing. Two things. Takeaway: em") == "One thing. Two things."
     assert trim_to_sentence("First point. It delivered up to 2.") == "First point."
     assert trim_to_sentence("no sentence break at all") == "no sentence break at all"
+
+
+def test_feed_fetch_retries_once_on_timeout():
+    calls = []
+
+    def handler(request):
+        calls.append(1)
+        if len(calls) == 1:
+            raise httpx.ReadTimeout("slow", request=request)
+        return httpx.Response(200, content=rss(entry("ok", NOW, "g")))
+
+    items = _fetcher(handler).fetch_feed(Feed("Blog", "https://ex.com/feed"), NOW - timedelta(hours=1))
+    assert len(calls) == 2 and [i.title for i in items] == ["ok"]

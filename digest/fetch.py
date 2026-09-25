@@ -128,7 +128,12 @@ class Fetcher:
         self.client.close()
 
     def fetch_feed(self, feed: Feed, since: datetime) -> list[Item]:
-        response = self.client.get(feed.xml_url)
+        try:
+            response = self.client.get(feed.xml_url)
+        except httpx.TransportError:
+            # Timeouts and connection resets are often transient; one retry cuts false alarms.
+            log.info("Retrying %s after a transport error", feed.title)
+            response = self.client.get(feed.xml_url)
         response.raise_for_status()
         items, undated = parse_feed(feed, response.content, since)
         if undated:

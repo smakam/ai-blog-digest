@@ -81,11 +81,12 @@ The ones you'll change most:
 repo. For Telegram: create a bot with @BotFather, send it a message, then read your chat ID from
 `https://api.telegram.org/bot<token>/getUpdates`.
 
-The run time (07:00 IST) is set in each runtime's scheduler, not here.
+The run time (07:15 IST for the routine) is set in the runtime's scheduler, not here.
 
 ## Runtimes and comparison
 
-See [docs/runtimes.md](docs/runtimes.md) for GitHub Actions, Claude Code routine, and Cowork setup,
+The digest runs as a Claude Code remote routine; the GitHub Actions workflow is disabled.
+See [docs/runtimes.md](docs/runtimes.md) for routine, GitHub Actions, and Cowork setup,
 and for the one-week comparison with `tools/report.py`.
 
 ## Logs

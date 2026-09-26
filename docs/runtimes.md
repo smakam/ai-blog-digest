@@ -1,13 +1,17 @@
 # Running the digest on each option
 
-Both options run the identical pipeline: same code, `config.yaml`, `feeds.opml`, Jev for
+**In use: the Claude Code remote routine (B) only.** The GitHub Actions workflow (A) is disabled in
+GitHub (since 25 Sep 2026) and Cowork (C) was never set up; their notes are kept for reference.
+
+All options run the identical pipeline: same code, `config.yaml`, `feeds.opml`, Jev for
 classification, and Claude Haiku 4.5 (via OpenRouter) for summaries. Only the runtime differs, and
 `DIGEST_OPTION` labels each one's logs and state.
 
-| Option | Runtime | `DIGEST_OPTION` | Schedule (IST) |
-|---|---|---|---|
-| A | GitHub Actions cron | `gha` | 07:00 |
-| B | Claude Code remote routine | `routine` | 07:15 |
+| Option | Runtime | `DIGEST_OPTION` | Schedule (IST) | Status |
+|---|---|---|---|---|
+| A | GitHub Actions cron | `gha` | 07:00 | Disabled |
+| B | Claude Code remote routine | `routine` | 07:15 | **In use** |
+| C | Claude Cowork scheduled task | `cowork` | 07:00 | Not set up |
 
 State lives in `state/<option>.json` and logs in `logs/<date>_<option>.jsonl`, so all options can
 share one repo and commit to it without colliding.
@@ -20,7 +24,11 @@ failures and `title_summary` content sources in the logs.
 
 ---
 
-## A. GitHub Actions
+## A. GitHub Actions (disabled)
+
+The workflow is disabled in **Actions → AI Blog Digest → ⋯ → Disable workflow**, so neither the
+schedule nor manual runs fire. To bring it back, choose **Enable workflow** there; it then runs
+alongside the routine and both send a digest.
 
 Already wired up in [`.github/workflows/digest.yml`](../.github/workflows/digest.yml).
 
@@ -37,7 +45,7 @@ State and logs are committed back to the default branch after every run.
 
 ---
 
-## B. Claude Code remote routine
+## B. Claude Code remote routine (in use)
 
 1. Push the repo to GitHub and connect it to Claude Code on the web.
 2. Create a cloud **environment** for the routine:
@@ -60,7 +68,7 @@ debugging.
 
 ---
 
-## C. Claude Cowork scheduled task
+## C. Claude Cowork scheduled task (not set up)
 
 1. In Claude Desktop → Cowork, create a scheduled task: daily at 07:00 (IST local time).
 2. Give it access to a folder containing a checkout of this repo.

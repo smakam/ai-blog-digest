@@ -14,7 +14,6 @@
         <outline text="AI - Frontier Labs" title="AI - Frontier Labs">
             <outline type="rss" text="Together.ai" title="Together.ai" xmlUrl="https://www.together.ai/blog/rss.xml" htmlUrl="https://www.together.ai"/>
             <outline type="rss" text="The latest research from Google" title="The latest research from Google" xmlUrl="https://research.google/blog/rss/" htmlUrl="https://research.google/blog/"/>
-            <outline type="rss" text="AI at Meta" title="AI at Meta" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC5qxlwEKM7-5YZudb24l0bg" htmlUrl="https://www.youtube.com/channel/UC5qxlwEKM7-5YZudb24l0bg"/>
             <outline type="rss" text="AI at Meta Blog" title="AI at Meta Blog" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml" htmlUrl="https://ai.meta.com/blog/"/>
             <outline type="rss" text="xAI News" title="xAI News" xmlUrl="https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml" htmlUrl="https://x.ai/news"/>
             <outline type="rss" text="Microsoft Research" title="Microsoft Research" xmlUrl="https://www.microsoft.com/en-us/research/feed/" htmlUrl="https://www.microsoft.com/en-us/research/"/>
